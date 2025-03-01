@@ -1,0 +1,37 @@
+# Django
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+media/
+
+# Системные файлы
+.DS_Store
+.gitignore
+
+# Виртуальное окружение
+.env
+.venv
+env/
+venv/
+ENV/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Кэш и временные файлы
+.pytest_cache/
+.coverage
+htmlcov/.DS_Store
+db.sqlite3
+db.sqlite3-journal
+.python-version
+uv.lock
+__pycache__/
+*.pyc

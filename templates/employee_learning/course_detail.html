@@ -1,0 +1,14 @@
+{% extends "base/base.html" %}
+{% block body %}
+    <div class="container text-center">
+        <h1 class="text-center m-5">DETAIL page</h1>
+        <p class="text-muted mt-3 mb-0">Course Title: {{ course_object.title }}
+        <p class="text-muted mt-3 mb-0">LEVEL: {{ object.get_level_display }}
+        <p class="text-muted mt-3 mb-0">Assigned Employees : </p>
+        {% for emp in object.employee.all %}
+            <p class="mb-0">{{emp.name}}: {{emp.division}}</p>
+        {% endfor %}
+        <a href="{% url 'course_update' object.pk %}" class='btn btn-warning m-3'>UPDATE</a>
+        <a href="{% url 'course_delete' object.pk %}" class='btn btn-danger m-3'>DELETE</a>
+    </div>
+{% endblock body %}

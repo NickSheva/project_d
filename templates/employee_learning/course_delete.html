@@ -1,0 +1,11 @@
+{% extends "base/base.html" %}
+{% block body %}
+<div class="container text-center">
+    <h1 class="text-center m-5">DELETE Page</h1>
+    <from method='post'>
+        {% csrf_token %}
+        <p class="text-center bg-danger p-0 d-block w-50 mx-auto">Are you sure you want to delete {{ object }}?</p>
+        <button type='submit' class='btn btn-danger '>Corfirm</button>
+    </form>
+</div>
+{% endblock body %}
