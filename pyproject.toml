@@ -20,3 +20,5 @@ dependencies = [
     "black>=25.1.0",
     "git-filter-repo>=2.47.0",
 ]
+[tool.setuptools.packages.find]
+include = ["config", "static", "test_app", "templates", "user_profile", "employee_learning"]
