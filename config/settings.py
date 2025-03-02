@@ -175,12 +175,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [BASE_DIR/ 'static']
-
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -189,39 +184,40 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 ### django-allauth settings ###
 
+# Настройки allauth
 SITE_ID = 1
 AUTHENTICATION_BACKENDS = [
-    # Needed to login by username in Django admin, regardless or 'allauth'
-    'django.contrib.auth.backends.ModelBackend',
-    # 'allauth' specific authentication methiods, such as login by e-mail
-    'allauth.account.auth_backends.AuthenticationBackend',
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
 ]
-# LOGIN and LOGOUT authentication
-LOGIN_REDIRECT_URL = '/'
-ACCOUNT_LOGOUT_REDIRECT_URL = '/accounts/login/'
+
+# Настройки входа и выхода
+LOGIN_REDIRECT_URL = "/"
+ACCOUNT_LOGOUT_REDIRECT_URL = "/accounts/login/"
 ACCOUNT_LOGOUT_ON_GET = True
 
-ACCOUNT_LOGIN_METHOD = ["email"] #new method
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+# Настройки аутентификации
+ACCOUNT_AUTHENTICATION_METHOD = "email"  # Используйте email для входа
+ACCOUNT_EMAIL_REQUIRED = True  # Email обязателен
+ACCOUNT_USERNAME_REQUIRED = False  # Имя пользователя не обязательно
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"  # Требуется подтверждение email
 
-ACCOUNT_USERNAME_REQUIRED = False
-ACCOUNT_UNIQUE_USERNAME = True
-
-#Add the following when you are using custom user model
-#ACCOUNT_USER_MODEL_USERNAME_FIELD = None
-
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# Email settings
-EMAIL_HOST = config('EMAIL_HOST')
-EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
-EMAIL_USE_SSL = config('EMAIL_USE_SSL', default=False, cast=bool)
-EMAIL_USE_TLS = config('EMAIL_USE_TLS', default=True, cast=bool)
-EMAIL_PORT = config('EMAIL_PORT', default=587, cast=int)
-DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
+# Настройки email
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = config("EMAIL_HOST")
+EMAIL_HOST_USER = config("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
+EMAIL_USE_TLS = config("EMAIL_USE_TLS", default=True, cast=bool)
+EMAIL_PORT = config("EMAIL_PORT", default=587, cast=int)
 # Указывает адрес электронной почты отправителя по умолчанию.
-DEFAULT_FROM_EMAIL = 'niksheva7@gmail.com'
+DEFAULT_FROM_EMAIL = config("DEFAULT_FROM_EMAIL")
+
+# Настройки статических файлов
+STATIC_URL = "/static/"
+
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 ACCOUNT_FORMS = {'reset_password': 'employee_learning.forms.CustomResetPasswordForm'}
 # ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
