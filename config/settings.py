@@ -198,7 +198,8 @@ ACCOUNT_LOGOUT_ON_GET = True
 ACCOUNT_LOGIN_METHODS = ["email"]  # Используйте new email для входа
 ACCOUNT_EMAIL_REQUIRED = True  # Email обязателен
 ACCOUNT_USERNAME_REQUIRED = False  # Имя пользователя не обязательно
-ACCOUNT_EMAIL_VERIFICATION = "mandatory"  # Требуется подтверждение email
+ACCOUNT_EMAIL_VERIFICATION = "none" #"mandatory"  # Требуется подтверждение email
+ACCOUNT_UNIQUE_EMAIL = True  # Уникальный email
 
 # Настройки email
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
