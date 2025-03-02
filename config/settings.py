@@ -30,7 +30,13 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = config("ALLOWED_HOSTS",  default='', cast=Csv())
+ALLOWED_HOSTS = [
+    "localhost",
+    "192.168.1.33",
+    "172.20.10.9",
+    "192.168.1.150",
+    "NickSh.pythonanywhere.com",  # Добавьте ваш домен на PythonAnywhere
+]
 
 
 # Application definition
