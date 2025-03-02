@@ -32,10 +32,8 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = [
     "localhost",
-    "192.168.1.33",
-    "172.20.10.9",
-    "192.168.1.150",
-    "NickSh.pythonanywhere.com",  # Добавьте ваш домен на PythonAnywhere
+    "192.168.1.172",
+    "nicksh.pythonanywhere.com",  # Добавьте ваш домен на PythonAnywhere
 ]
 
 
