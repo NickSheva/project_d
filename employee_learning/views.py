@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView, TemplateView
-from .models import LearningCourse
+from employee_learning.models import LearningCourse
 from django.urls import reverse_lazy
 from django.utils import timezone
 # Create your views here.
@@ -9,10 +9,11 @@ from django.utils import timezone
 
 
 class CourseList(LoginRequiredMixin, ListView):
-    # model = LearningCourse
-    # queryset = LearningCourse.objects.order_by('-title')
-    # queryset = LearningCourse.objects.filter(level__contains="B")
-    queryset = LearningCourse.objects.filter(title__endswith="ADVANCED")
+    #def get_queryset(self):
+        # queryset = LearningCourse.objects.order_by('-title')
+        # queryset = LearningCourse.objects.filter(level__contains="B")
+        # queryset = LearningCourse.objects.filter(title__endswith="ADVANCED")
+    model = LearningCourse
     template_name = 'employee_learning/course_list.html'
     context_object_name = 'course_object_list'
     def get_context_data(self, **kwargs):
