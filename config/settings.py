@@ -197,7 +197,7 @@ ACCOUNT_LOGOUT_REDIRECT_URL = "/accounts/login/"
 ACCOUNT_LOGOUT_ON_GET = True
 
 # Настройки аутентификации
-ACCOUNT_AUTHENTICATION_METHOD = "email"  # Используйте email для входа
+ACCOUNT_LOGIN_METHOD = ["email"]  # Используйте new email для входа
 ACCOUNT_EMAIL_REQUIRED = True  # Email обязателен
 ACCOUNT_USERNAME_REQUIRED = False  # Имя пользователя не обязательно
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"  # Требуется подтверждение email
