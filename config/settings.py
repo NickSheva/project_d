@@ -25,7 +25,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
@@ -201,12 +201,13 @@ ACCOUNT_UNIQUE_EMAIL = True  # Уникальный email
 # Настройки email
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 # Chack
-# EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
-# print(f"Loaded EMAIL_HOST_PASSWORD: {EMAIL_HOST_PASSWORD}")
+EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
+print(f"Loaded EMAIL_HOST_PASSWORD: {EMAIL_HOST_PASSWORD}")
 
 EMAIL_HOST = config("EMAIL_HOST")
 EMAIL_HOST_USER = config("EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
+EMAIL_HOST_PASSWORD = "fjowsuphlwkkfxrr"
+# EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
 EMAIL_USE_TLS = config("EMAIL_USE_TLS", default=True, cast=bool)
 EMAIL_PORT = config("EMAIL_PORT", default=587, cast=int)
 # Указывает адрес электронной почты отправителя по умолчанию.
