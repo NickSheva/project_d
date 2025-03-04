@@ -19,6 +19,8 @@ dependencies = [
     "python-decouple>=3.8",
     "black>=25.1.0",
     "git-filter-repo>=2.47.0",
+    "psycopg2-binary>=2.9.10",
+    "psycopg2>=2.9.10",
 ]
 [tool.setuptools.packages.find]
 include = ["config", "static", "test_app", "templates", "user_profile", "employee_learning"]
