@@ -25,6 +25,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+config.encoding = "cp1251"
 SECRET_KEY = config("SECRET_KEY")
 # SECRET_KEY = f"${env('DJANGO_SECRET_KEY')}"
 
