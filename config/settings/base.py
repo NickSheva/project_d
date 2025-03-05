@@ -22,24 +22,6 @@ TEMPLATE_DIR = BASE_DIR/ 'templates'
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-config.encoding = "utf-8"
-SECRET_KEY = config("SECRET_KEY")
-# SECRET_KEY = f"${env('DJANGO_SECRET_KEY')}"
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=False, cast=bool)
-
-ALLOWED_HOSTS = [
-    "localhost",
-    "192.168.1.172",
-    "nicksh.pythonanywhere.com",  # Добавьте ваш домен на PythonAnywhere
-]
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -118,22 +100,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
-
 # Database settings
-DATABASES = {
-    'default': {
-        'ENGINE': config('DB_ENGINE', default='django.db.backends.sqlite3'),
-        'NAME': config('DB_NAME', default=BASE_DIR / 'db.sqlite3'),
-        'USER': config('DB_USER', default=''),
-        'PASSWORD': config('DB_PASSWORD', default=''),
-        'HOST': config('DB_HOST', default=''),
-        'PORT': config('DB_PORT', default=''),
-    }
-}
+
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
@@ -203,9 +171,6 @@ ACCOUNT_UNIQUE_EMAIL = True  # Уникальный email
 
 # Настройки email
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-# Check
-# EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
-# print(f"Loaded EMAIL_HOST_PASSWORD: {EMAIL_HOST_PASSWORD}")
 
 EMAIL_HOST = config("EMAIL_HOST")
 EMAIL_HOST_USER = config("EMAIL_HOST_USER")
@@ -217,10 +182,10 @@ EMAIL_PORT = config("EMAIL_PORT", default=587, cast=int)
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # Настройки статических файлов
-STATIC_URL = "/static/"
+STATIC_URL = "static/"
 
-STATICFILES_DIRS = [BASE_DIR / "static"]
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_DIRS = [ BASE_DIR / "static" ]
+
 # STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 ACCOUNT_FORMS = {'reset_password': 'employee_learning.forms.CustomResetPasswordForm'}
