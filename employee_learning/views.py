@@ -9,6 +9,7 @@ from django.utils import timezone
 
 
 class CourseList(LoginRequiredMixin, ListView):
+    # login_url = "/login/"  # Укажи свой путь к странице логина
     #def get_queryset(self):
         # queryset = LearningCourse.objects.order_by('-title')
         # queryset = LearningCourse.objects.filter(level__contains="B")

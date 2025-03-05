@@ -166,6 +166,8 @@ cython_debug/
 
 __pycache__
 media/
+/staticfiles/
+/media/
 # Системные файлы
 .DS_Store
 .gitignore
