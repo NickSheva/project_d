@@ -21,7 +21,7 @@ TEMPLATE_DIR = BASE_DIR/ 'templates'
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
-
+ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
 # Application definition
 
 INSTALLED_APPS = [
@@ -102,12 +102,12 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 # Database settings
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 
 # Password validation
@@ -194,3 +194,22 @@ ACCOUNT_FORMS = {'reset_password': 'employee_learning.forms.CustomResetPasswordF
 # ACCOUNT_USERNAME_REQUIRED = True
 # ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
 # ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 300
+
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "console": {
+            "level": "DEBUG",
+            "class": "logging.StreamHandler",
+        },
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["console"],
+            "level": "DEBUG",
+            "propagate": True,
+        },
+    },
+}
