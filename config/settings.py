@@ -11,11 +11,13 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
-# from decouple import config
-import environ
+from decouple import config
+# import environ
 
-env = environ.Env()
-env.read_env('.env')
+# env = environ.Env()
+# environ.Env.read_env('project_d/.env')
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 # template directory path
@@ -25,10 +27,10 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 # Инициализация django-environ
-SECRET_KEY = env('SECRET_KEY')
-DEBUG = False
-ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
-# ALLOWED_HOSTS = env("ALLOWED_HOSTS").split(",")
+# SECRET_KEY ="django-insecure-sp6k8nrm04n_*wyo0#a1$m$5=2f89odg$qw)w-crct^vmoj3gt"
+SECRET_KEY = config('SECRET_KEY')
+DEBUG = config('DEBUG', default=False, cast=bool)
+ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 
 
 # Дополнительные настройки для development
@@ -186,21 +188,22 @@ ACCOUNT_LOGOUT_REDIRECT_URL = "/accounts/login/"
 ACCOUNT_LOGOUT_ON_GET = True
 
 # Настройки аутентификации
+# ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_LOGIN_METHODS = ["email"]  # Используйте new email для входа
 ACCOUNT_EMAIL_REQUIRED = True  # Email обязателен
-ACCOUNT_USERNAME_REQUIRED = False  # Имя пользователя не обязательно
+ACCOUNT_USERNAME_REQUIRED = True # Имя пользователя не обязательно
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"  # Требуется подтверждение email
 ACCOUNT_UNIQUE_EMAIL = True  # Уникальный email
 
 # Настройки email
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-
-EMAIL_HOST = env("EMAIL_HOST")
-EMAIL_HOST_USER = env("EMAIL_HOST_USER")
+EMAIL_HOST = config("EMAIL_HOST")
+# EMAIL_HOST = env("EMAIL_HOST")
+EMAIL_HOST_USER = config("EMAIL_HOST_USER")
 # EMAIL_HOST_PASSWORD = "fjowsuphlwkkfxrr"
-EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
-EMAIL_USE_TLS = env("EMAIL_USE_TLS")
-EMAIL_PORT = env("EMAIL_PORT")
+EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
+EMAIL_USE_TLS = config("EMAIL_USE_TLS")
+EMAIL_PORT = config("EMAIL_PORT")
 # Указывает адрес электронной почты отправителя по умолчанию.
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
