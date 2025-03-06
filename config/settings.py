@@ -12,16 +12,40 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 from decouple import config
-
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent
 # template directory path
 TEMPLATE_DIR = BASE_DIR/ 'templates'
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
-ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
+
+# Инициализация django-environ
+# env = environ.Env()
+# env.read_env(".env")
+
+SECRET_KEY = config("SECRET_KEY")
+DEBUG = config("DEBUG", default=False, cast=bool)
+ALLOWED_HOSTS=['localhost', '127.0.0.1']
+# ALLOWED_HOSTS = config("ALLOWED_HOSTS").split(",")
+
+
+# Дополнительные настройки для development
+# ROOT_URLCONF = "config.urls"  # или 'your_project_name.urls'
+# DATABASES = {
+#     "default": {
+#         "ENGINE": env("DB_ENGINE"),
+#         "NAME": env("DB_NAME"),
+#         "USER": env("DB_USER"),
+#         "PASSWORD": env("DB_PASSWORD"),
+#         "HOST": env("DB_HOST"),
+#         "PORT": env("DB_PORT"),
+#     }
+# }
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -185,6 +209,8 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 STATIC_URL = "static/"
 
 STATICFILES_DIRS = [ BASE_DIR / "static" ]
+# Настройки статики
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
