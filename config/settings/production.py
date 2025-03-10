@@ -5,7 +5,7 @@ env =environ.Env()
 env.read_env('.env')
 # Режим отладки
 SECRET_KEY = env("SECRET_KEY")
-DEBUG = False
+DEBUG = env.bool("DEBUG")
 
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
 
