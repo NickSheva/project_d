@@ -21,9 +21,6 @@ environ.Env.read_env()
 # Базовая директория проекта
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-# Секретный ключ
-SECRET_KEY = env("SECRET_KEY")
-
 TEMPLATE_DIR = BASE_DIR/ 'templates'
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
