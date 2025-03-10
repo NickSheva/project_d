@@ -4,7 +4,8 @@ import environ
 env = environ.Env()
 env.read_env(".env")
 # Режим отладки
-DEBUG = env.bool("DEBUG", default=None) or False
+SECRET_KEY = env("SECRET_KEY")
+DEBUG = env.bool("DEBUG")
 
 # Разрешенные хосты
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
