@@ -2,7 +2,7 @@ from config.settings.base import *
 import environ
 
 env = environ.Env()
-env.read_env(".env")
+env.read_env("project_d/.env")
 # Режим отладки
 SECRET_KEY = env("SECRET_KEY")
 DEBUG = env.bool("DEBUG")
