@@ -11,40 +11,25 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
-from decouple import config
-# import environ
+# from decouple import config, Csv
+import environ
 
-# env = environ.Env()
-# environ.Env.read_env('project_d/.env')
+# Инициализация django-environ
+env = environ.Env()
+environ.Env.read_env()
 
+# Базовая директория проекта
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-# template directory path
+# Секретный ключ
+SECRET_KEY = env("SECRET_KEY")
+
 TEMPLATE_DIR = BASE_DIR/ 'templates'
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
-# Инициализация django-environ
-# SECRET_KEY ="django-insecure-sp6k8nrm04n_*wyo0#a1$m$5=2f89odg$qw)w-crct^vmoj3gt"
-SECRET_KEY = config('SECRET_KEY')
-DEBUG = config('DEBUG', default=False, cast=bool)
-ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 
-
-# Дополнительные настройки для development
-# ROOT_URLCONF = "env.urls"  # или 'your_project_name.urls'
-# DATABASES = {
-#     "default": {
-#         "ENGINE": env("DB_ENGINE"),
-#         "NAME": env("DB_NAME"),
-#         "USER": env("DB_USER"),
-#         "PASSWORD": env("DB_PASSWORD"),
-#         "HOST": env("DB_HOST"),
-#         "PORT": env("DB_PORT"),
-#     }
-# }
 
 
 # Application definition
@@ -105,7 +90,7 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 
-ROOT_URLCONF = 'env.urls'
+ROOT_URLCONF = 'config.urls'
 
 TEMPLATES = [
     {
@@ -123,16 +108,16 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'env.wsgi.application'
+WSGI_APPLICATION = 'config.wsgi.application'
 
 # Database settings
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 
 # Password validation
@@ -153,10 +138,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
-# Internationalization
-# https://docs.djangoproject.com/en/5.1/topics/i18n/
-
 LANGUAGE_CODE = 'ru'
 
 TIME_ZONE = 'Asia/Yekaterinburg'
@@ -164,12 +145,6 @@ TIME_ZONE = 'Asia/Yekaterinburg'
 USE_I18N = True
 
 USE_TZ = True
-
-
-
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
@@ -195,17 +170,26 @@ ACCOUNT_USERNAME_REQUIRED = True # Имя пользователя не обяз
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"  # Требуется подтверждение email
 ACCOUNT_UNIQUE_EMAIL = True  # Уникальный email
 
-# Настройки email
+
+# Настройки для отправки email
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = config("EMAIL_HOST")
-# EMAIL_HOST = env("EMAIL_HOST")
-EMAIL_HOST_USER = config("EMAIL_HOST_USER")
-# EMAIL_HOST_PASSWORD = "fjowsuphlwkkfxrr"
-EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
-EMAIL_USE_TLS = config("EMAIL_USE_TLS")
-EMAIL_PORT = config("EMAIL_PORT")
-# Указывает адрес электронной почты отправителя по умолчанию.
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+EMAIL_HOST = env("EMAIL_HOST")
+EMAIL_HOST_USER = env("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
+EMAIL_PORT = env("EMAIL_PORT")
+EMAIL_USE_TLS = env.bool("EMAIL_USE_TLS")
+
+# Настройки статических файлов
+STATIC_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+# Настройки безопасности
+# SECURE_HSTS_SECONDS = 3600
+# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+# SECURE_HSTS_PRELOAD = True
+# SECURE_SSL_REDIRECT = True
+# SESSION_COOKIE_SECURE = True
+# CSRF_COOKIE_SECURE = True
 
 # Настройки статических файлов
 STATIC_URL = "/static/"
