@@ -197,4 +197,10 @@ ENV/
 # End of https://www.toptal.com/developers/gitignore/api/django
 # Игнорировать файл development.py
 config/settings/development.py
+config/settings/production.py
+production.py
+config/__pycache__
 
+
+__pycache__/
+*.py[cod]
