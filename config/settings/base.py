@@ -28,7 +28,7 @@ TEMPLATE_DIR = BASE_DIR / "templates"
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
-SECRET_KEY = env("SECRET_KEY")
+SECRET_KEY = env("SECRET_KEY", default="it_is_not_a_secret-key")
 DEBUG = env.bool('DEBUG')
 
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
