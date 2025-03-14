@@ -189,7 +189,7 @@ ACCOUNT_UNIQUE_EMAIL = True  # Уникальный email
 # CSRF_COOKIE_SECURE = True
 
 # Настройки статических файлов
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 # STATIC_ROOT = BASE_DIR / 'path'
 # STATIC_ROOT = BASE_DIR/ "staticfiles"
