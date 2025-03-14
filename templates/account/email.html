@@ -1,0 +1,88 @@
+{% extends "allauth/layouts/base.html" %}
+{% load allauth i18n %}
+{% block head_title %}
+    {% trans "Email Addresses" %}
+{% endblock head_title %}
+{% block content %}
+    <h2 class="text-center m-1">
+        {% trans "Email Addresses" %}
+    </h2>
+    {% if emailaddresses %}
+        {% element p %}
+            {% trans 'The following email addresses are associated with your account:' %}
+        {% endelement %}
+        {% url 'account_email' as email_url %}
+        {% element form form=form action=email_url method="post" tags="email,list" %}
+            {% slot body %}
+                {% csrf_token %}
+                {% for radio in emailaddress_radios %}
+                    {% with emailaddress=radio.emailaddress %}
+                        {% element field type="radio" checked=radio.checked name="email" value=emailaddress.email id=radio.id %}
+                            {% slot label %}
+                                {{ emailaddress.email }}
+                                {% if emailaddress.verified %}
+                                    {% element badge tags="success,email,verified" %}
+                                        {% translate "Verified" %}
+                                    {% endelement %}
+                                {% else %}
+                                    {% element badge tags="warning,email,unverified" %}
+                                        {% translate "Unverified" %}
+                                    {% endelement %}
+                                {% endif %}
+                                {% if emailaddress.primary %}
+                                    {% element badge tags="email,primary" %}
+                                        {% translate "Primary" %}
+                                    {% endelement %}
+                                {% endif %}
+                            {% endslot %}
+                        {% endelement %}
+                    {% endwith %}
+                {% endfor %}
+            {% endslot %}
+            {% slot actions %}
+            <div class="buttonHolder text-center">
+                <button class="secondaryAction btn btn-primary w-75 m-1 mt-4" type="submit" name="action_primary" style="height:2.5rem; border-radius:10px">
+                    {% trans 'Make Primary' %}
+                </button>
+                <button class="secondaryAction btn btn-warning w-75 m-1" type="submit" name="action_send" style="height:2.5rem; border-radius:10px;">
+                    {% trans 'Re-send Verification' %}
+                </button>
+                <button class="secondaryAction btn btn-danger w-75 m-1" tags="danger,delete" type="submit" name="action_remove" style="height:2.5rem; border-radius:10px;">
+                    {% trans 'Remove' %}
+                </button>
+            </div>
+            {% endslot %}
+        {% endelement %}
+    {% else %}
+        {% include "account/snippets/warn_no_email.html" %}
+    {% endif %}
+    {% if can_add_email %}
+        <hr>
+        <h2 class="text-center m-4">
+            {% trans "Add Email Address" %}
+        </h2>
+        {% load crispy_forms_tags %}
+        <form method="post" action={% url 'account_email' %}>
+
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button name="action_add" type="submit" class="btn btn-primary d-block mx-auto">
+                    {% trans "Add Email" %}</button>
+        </form>
+    {% endif %}
+{% endblock content %}
+{% block extra_body %}
+    <script>
+(function() {
+  var message = "{% trans 'Do you really want to remove the selected email address?' %}";
+  var actions = document.getElementsByName('action_remove');
+  if (actions.length) {
+    actions[0].addEventListener("click", function(e) {
+      if (! confirm(message)) {
+        e.preventDefault();
+      }
+    });
+  }
+})();
+    </script>
+{% endblock extra_body %}
