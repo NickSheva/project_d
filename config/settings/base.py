@@ -58,7 +58,7 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",  # Контент-тайпы для моделей
     "django.contrib.sessions",
     "django.contrib.messages",
-    "whitenoise.runserver_nostatic",
+    # "whitenoise.runserver_nostatic",
     "django.contrib.staticfiles",
     "phonenumber_field",
     # my app
