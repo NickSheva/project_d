@@ -30,8 +30,8 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 SECRET_KEY = env("SECRET_KEY")
 DEBUG = env.bool('DEBUG')
-
-ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").split(",")
+# ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
 
 # Настройки базы данных для production
 DEBUG = env.bool("DEBUG")
