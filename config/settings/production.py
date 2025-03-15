@@ -22,3 +22,6 @@ DATABASES = {
 # Настройки статических файлов
 STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
+
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_SIGNUP_FIELDS = ["email", "password1", "password2"]
