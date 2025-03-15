@@ -198,7 +198,7 @@ ENV/
 # Игнорировать файл development.py
 config/settings/development.py
 config/__pycache__
-config/settings/production.py
+#config/settings/production.py
 !config/settings/__init__.py
 
 
