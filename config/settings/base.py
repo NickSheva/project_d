@@ -11,31 +11,23 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 import os
 from pathlib import Path
-
-# import dj_database_url
 import environ
 
 env = environ.Env()
 environ.Env.read_env(".env")
 
-
-
 # Базовая директория проекта
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
-
 TEMPLATE_DIR = BASE_DIR / "templates"
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 SECRET_KEY = env("SECRET_KEY")
-DEBUG = env.bool('DEBUG')
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").split(",")
-# ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
+DEBUG = env.bool("DEBUG")
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default="localhost,127.0.0.1")
 
 # Настройки базы данных для production
-DEBUG = env.bool("DEBUG")
-
 DATABASES = {
     "default": {
         "ENGINE": env("DB_ENGINE"),
@@ -46,11 +38,6 @@ DATABASES = {
         "PORT": env("DB_PORT"),
     }
 }
-# DATABASES = {
-#     "default": dj_database_url.parse(
-#         env.str("DATABASE_URL")
-#     )
-# }
 
 # Настройки для отправки email
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
@@ -60,19 +47,15 @@ EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
 EMAIL_PORT = env("EMAIL_PORT")
 EMAIL_USE_TLS = env("EMAIL_USE_TLS")
 
-
 # Application definition
-
 INSTALLED_APPS = [
     "django.contrib.admin",
-    "django.contrib.auth",  # Приложение аутентификации
-    "django.contrib.contenttypes",  # Контент-тайпы для моделей
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
-    # "whitenoise.runserver_nostatic",
     "django.contrib.staticfiles",
     "phonenumber_field",
-    # my app
     "test_app",
     "employee_learning",
     "user_profile",
@@ -85,41 +68,29 @@ INSTALLED_APPS = [
     "allauth.socialaccount.providers.github",
     "allauth.socialaccount.providers.google",
 ]
-# django.core.exceptions.ImproperlyConfigured:
-# allauth.account.middleware.AccountMiddleware
-# must be added to settings.MIDDLEWARE
+
 MIDDLEWARE = [
-    "django.middleware.security.SecurityMiddleware",  # Управление сессиями
+    "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
-    "django.contrib.auth.middleware.AuthenticationMiddleware",  # Аутентификация
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    # new added
     "allauth.account.middleware.AccountMiddleware",
 ]
 
 SOCIALACCOUNT_PROVIDERS = {
     "github": {
         "SCOPE": ["user", "repo", "read:org"],
-        # 'APP': {
-        #     'client_id': env('SOCIAL_AUTH_GITРUB_KEY'),
-        #     'secret': env('SOCIAL_AUTH_GITHUB_SECRET'),
-        # }
     },
     "google": {
         "SCOPE": ["profile", "email"],
         "AUTH_PARAMS": {"access_type": "online"},
         "OAUTH_PKCE_ENABLED": True,
-        # 'APP': {
-        #     'client_id': env('SOCIAL_AUTH_GOOGLE_KEY'),
-        #     'secret': env('SOCIAL_AUTH_GOOGLE_SECRET'),
-        # }
     },
 }
-
 
 ROOT_URLCONF = "config.urls"
 
@@ -142,8 +113,6 @@ TEMPLATES = [
 WSGI_APPLICATION = "config.wsgi.application"
 
 # Password validation
-# https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
@@ -160,67 +129,43 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 LANGUAGE_CODE = "ru"
-
 TIME_ZONE = "Asia/Yekaterinburg"
-
 USE_I18N = True
-
 USE_TZ = True
-
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 ### django-allauth settings ###
-
-# Настройки allauth
 SITE_ID = 1
 AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
     "allauth.account.auth_backends.AuthenticationBackend",
 ]
 
-# Настройки входа и выхода
 LOGIN_REDIRECT_URL = "/"
 ACCOUNT_LOGOUT_REDIRECT_URL = "/accounts/login/"
 ACCOUNT_LOGOUT_ON_GET = True
 
-# Настройки аутентификации
-# ACCOUNT_AUTHENTICATION_METHOD = "email"
-ACCOUNT_LOGIN_METHODS = ["email"]  # Используйте new email для входа
-ACCOUNT_EMAIL_REQUIRED = True  # Email обязателен
-ACCOUNT_USERNAME_REQUIRED = True  # Имя пользователя не обязательно
-ACCOUNT_EMAIL_VERIFICATION = "mandatory"  # Требуется подтверждение email
-ACCOUNT_UNIQUE_EMAIL = True  # Уникальный email
-
-# Настройки безопасности
-# SECURE_HSTS_SECONDS = 3600
-# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-# SECURE_HSTS_PRELOAD = True
-# SECURE_SSL_REDIRECT = True
-# SESSION_COOKIE_SECURE = True
-# CSRF_COOKIE_SECURE = True
+# ACCOUNT_EMAIL_VERIFICATION = "none" #"mandatory"
+# ACCOUNT_SIGNUP_FIELDS = ["email", "password1", "password2"]
+# ACCOUNT_LOGIN_METHODS = ["email"]
 
 # Настройки статических файлов
-STATIC_URL = 'static/'
-
-# STATIC_ROOT = BASE_DIR / 'path'
-# STATIC_ROOT = BASE_DIR/ "staticfiles"
+STATIC_URL = "static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-STATICFILES_DIRS = [BASE_DIR / 'static',]
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
 STORAGES = {
     "default": {
         "BACKEND": "django.core.files.storage.FileSystemStorage",
     },
     "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",  # new
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
-# Настройки статики
 
-
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 ACCOUNT_FORMS = {"reset_password": "employee_learning.forms.CustomResetPasswordForm"}
 
-LOGGING_CONFIG = None
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
@@ -234,3 +179,11 @@ LOGGING = {
         "level": "INFO",
     },
 }
+
+# Настройки безопасности
+# SECURE_HSTS_SECONDS = 3600
+# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+# SECURE_HSTS_PRELOAD = True
+# SECURE_SSL_REDIRECT = True
+# SESSION_COOKIE_SECURE = True
+# CSRF_COOKIE_SECURE = True
