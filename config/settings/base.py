@@ -236,6 +236,3 @@ LOGGING = {
         "level": "INFO",
     },
 }
-
-print("DEBUG:", env("DEBUG", default="Not Set"))
-print("SECRET_KEY:", env("SECRET_KEY", default="Not Set"))
