@@ -35,6 +35,19 @@ ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
 
 # Настройки базы данных для production
 DEBUG = env.bool("DEBUG")
+# DATABASES = {"default": dj_database_url.config(default=None)}
+
+# if DATABASES["default"] is None:
+#     DATABASES = {
+#         "default": {
+#             "ENGINE": env("DB_ENGINE"),
+#             "NAME": env("DB_NAME"),
+#             "USER": env("DB_USER"),
+#             "PASSWORD": env("DB_PASSWORD"),
+#             "HOST": env("DB_HOST"),
+#             "PORT": env("DB_PORT"),
+#         }
+#     }
 DATABASES = {
     "default": dj_database_url.parse(
         env.str("DATABASE_URL")
