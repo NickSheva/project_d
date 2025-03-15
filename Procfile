@@ -1,2 +1,2 @@
-web: gunicorn config.wsgi:application --bind 0.0.0.0:8080
+web: gunicorn learning_log.wsgi --log-file -
 
