@@ -166,8 +166,8 @@ cython_debug/
 
 __pycache__
 media/
-staticfiles/
-/staticfiles/
+#staticfiles/
+#/staticfiles/
 /media/
 /*.egg-info/
 # Системные файлы
