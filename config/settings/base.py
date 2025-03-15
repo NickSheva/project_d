@@ -28,7 +28,7 @@ TEMPLATE_DIR = BASE_DIR / "templates"
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
-SECRET_KEY = env("SECRET_KEY", default="it_is_not_a_secret-key")
+SECRET_KEY = env("SECRET_KEY")
 DEBUG = env.bool('DEBUG')
 
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
@@ -221,3 +221,21 @@ STORAGES = {
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 ACCOUNT_FORMS = {"reset_password": "employee_learning.forms.CustomResetPasswordForm"}
+
+LOGGING_CONFIG = None
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+        },
+    },
+    "root": {
+        "handlers": ["console"],
+        "level": "INFO",
+    },
+}
+
+print("DEBUG:", env("DEBUG", default="Not Set"))
+print("SECRET_KEY:", env("SECRET_KEY", default="Not Set"))
