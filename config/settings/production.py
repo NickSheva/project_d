@@ -1,6 +1,4 @@
-import os
-from .base import BASE_DIR  # Явный импорт BASE_DIR
-from .base import *
+from .base import BASE_DIR, environ, os  # Явный импорт BASE_DIR
 
 
 env = environ.Env()

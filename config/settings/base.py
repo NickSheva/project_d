@@ -25,7 +25,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 SECRET_KEY = env("SECRET_KEY")
 DEBUG = env.bool("DEBUG")
-ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default="localhost,127.0.0.1")
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
 
 # Настройки базы данных для production
 DATABASES = {
@@ -145,9 +145,9 @@ LOGIN_REDIRECT_URL = "/"
 ACCOUNT_LOGOUT_REDIRECT_URL = "/accounts/login/"
 ACCOUNT_LOGOUT_ON_GET = True
 
-# ACCOUNT_EMAIL_VERIFICATION = "none" #"mandatory"
-# ACCOUNT_SIGNUP_FIELDS = ["email", "password1", "password2"]
-# ACCOUNT_LOGIN_METHODS = ["email"]
+ACCOUNT_EMAIL_VERIFICATION = "none" #"mandatory"
+ACCOUNT_SIGNUP_FIELDS = ["email", "password1", "password2"]
+ACCOUNT_LOGIN_METHODS = ["email"]
 
 # Настройки статических файлов
 STATIC_URL = "static/"
