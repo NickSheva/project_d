@@ -147,18 +147,19 @@ ACCOUNT_LOGOUT_ON_GET = True
 
 # Разрешить вход только по email
 
-# ACCOUNT_EMAIL_REQUIRED = True  # Email обязателен
-# ACCOUNT_UNIQUE_EMAIL = True  # Email должен быть уникальным
-# ACCOUNT_USERNAME_REQUIRED = False  # Имя пользователя не требуется
+ACCOUNT_EMAIL_REQUIRED = True  # Email обязателен
+ACCOUNT_UNIQUE_EMAIL = True  # Email должен быть уникальным
+ACCOUNT_USERNAME_REQUIRED = False  # Имя пользователя не требуется
 
 # Поля, которые будут использоваться при регистрации
-ACCOUNT_SIGNUP_FIELDS = ["email", "password1", "password2"]
+# ACCOUNT_SIGNUP_FIELDS = ["email", "password1", "password2"]
 
-# Разрешить вход по email
-ACCOUNT_LOGIN_METHODS = ["email"]
-ACCOUNT_EMAIL_VERIFICATION = "optional" #"mandatory"
+# # Разрешить вход по email
+# ACCOUNT_LOGIN_METHODS = ["email"]
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 
-
+ACCOUNT_LOGIN_METHODS = {"email"}
+# ACCOUNT_SIGNUP_FIELDS = ["email", "password1", "password2"]
 
 # Настройки статических файлов
 STATIC_URL = "static/"
