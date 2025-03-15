@@ -145,7 +145,7 @@ LOGIN_REDIRECT_URL = "/"
 ACCOUNT_LOGOUT_REDIRECT_URL = "/accounts/login/"
 ACCOUNT_LOGOUT_ON_GET = True
 
-ACCOUNT_EMAIL_VERIFICATION = "none" #"mandatory"
+ACCOUNT_EMAIL_VERIFICATION = "optional" #"mandatory"
 ACCOUNT_SIGNUP_FIELDS = ["email", "password1", "password2"]
 ACCOUNT_LOGIN_METHODS = ["email"]
 
