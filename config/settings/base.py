@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 import os
 from pathlib import Path
 
-import dj_database_url
+# import dj_database_url
 import environ
 
 env = environ.Env()
@@ -35,24 +35,22 @@ ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
 
 # Настройки базы данных для production
 DEBUG = env.bool("DEBUG")
-# DATABASES = {"default": dj_database_url.config(default=None)}
 
-# if DATABASES["default"] is None:
-#     DATABASES = {
-#         "default": {
-#             "ENGINE": env("DB_ENGINE"),
-#             "NAME": env("DB_NAME"),
-#             "USER": env("DB_USER"),
-#             "PASSWORD": env("DB_PASSWORD"),
-#             "HOST": env("DB_HOST"),
-#             "PORT": env("DB_PORT"),
-#         }
-#     }
 DATABASES = {
-    "default": dj_database_url.parse(
-        env.str("DATABASE_URL")
-    )
+    "default": {
+        "ENGINE": env("DB_ENGINE"),
+        "NAME": env("DB_NAME"),
+        "USER": env("DB_USER"),
+        "PASSWORD": env("DB_PASSWORD"),
+        "HOST": env("DB_HOST"),
+        "PORT": env("DB_PORT"),
+    }
 }
+# DATABASES = {
+#     "default": dj_database_url.parse(
+#         env.str("DATABASE_URL")
+#     )
+# }
 
 # Настройки для отправки email
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
@@ -202,7 +200,7 @@ ACCOUNT_UNIQUE_EMAIL = True  # Уникальный email
 # CSRF_COOKIE_SECURE = True
 
 # Настройки статических файлов
-STATIC_URL = '/static/'
+STATIC_URL = 'static/'
 
 # STATIC_ROOT = BASE_DIR / 'path'
 # STATIC_ROOT = BASE_DIR/ "staticfiles"
