@@ -1,2 +1,2 @@
-web: gunicorn config.wsgi --log-file -120
+web: gunicorn config.wsgi --log-file
 

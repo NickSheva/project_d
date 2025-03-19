@@ -35,29 +35,28 @@ SECRET_KEY = env("SECRET_KEY")
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
 DEBUG = env("DEBUG")
 
-# DATABASES = {
-#     "default": dj_database_url.config(
-#         default="postgres://nikolayshevtsov:admin@localhost:5432/mydatabase",
-#         conn_max_age=600,
-#         conn_health_checks=True,
-#     ),
-# }
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": env("PGNAME"),
-        "HOST": env("PGHOST"),
-        "PORT": env("PGPORT"),
-        "USER": env("PGUSER"),
-        "PASSWORD": env("PGPASSWORD"),
-    }
+    "default": dj_database_url.config(
+        conn_max_age=600,
+        conn_health_checks=True,
+    ),
 }
 # DATABASES = {
 #     "default": {
-#         "ENGINE": "django.db.backends.sqlite3",
-#         "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+#         "ENGINE": "django.db.backends.postgresql_psycopg2",
+#         "NAME": env("PGNAME"),
+#         "HOST": env("PGHOST"),
+#         "PORT": env("PGPORT"),
+#         "USER": env("PGUSER"),
+#         "PASSWORD": env("PGPASSWORD"),
 #     }
 # }
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+    }
+}
 
 # Настройки для отправки email
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
@@ -74,6 +73,7 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
+    'whitenoise.runserver_nostatic',  # <-- Updated!
     "django.contrib.staticfiles",
     "phonenumber_field",
     "test_app",
