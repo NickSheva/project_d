@@ -1,0 +1,56 @@
+body{
+    background-color: white;
+    font-family: "Helvetica Neue";
+}
+.h1.text-heading-default{
+    text-align:center;
+    margin:3rem;
+    font-family: "Helvetica Neue";
+    font-size: 8px;
+}
+.headding{
+    font-size: 12px;
+    font-weight: bold;
+ }
+
+.custom-label {
+        font-size: 18px;
+        font-weight: bold;
+    }
+.custom-input {
+        font-size: 16px;
+        padding: 10px;
+    }
+
+
+
+
+/* Для красивого выравнивания */
+/* ul {
+    padding: 0;
+    display: flex;
+    gap: 10px;
+} */
+
+
+
+.github, .google {
+    display: inline-block;
+    content: "";
+    width: 50px;
+    height: 50px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.github {
+    background-image: url("../images/github.357c3c73e054.png");
+}
+
+.google {
+    background-image: url("../images/google.ca2f7db280e9.png");
+} 
+
+/* #id_password_helptext {
+    display: none;
+} */
