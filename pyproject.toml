@@ -27,6 +27,7 @@ dependencies = [
     "whitenoise>=6.9.0",
     "psycopg>=3.2.6",
     "pillow>=11.1.0",
+    "python-dotenv>=1.0.1",
 ]
 [tool.setuptools.packages.find]
 include = ["config", "static", "test_app", "templates", "user_profile", "employee_learning"]

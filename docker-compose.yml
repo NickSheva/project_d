@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_DB: railway
+      POSTGRES_USER: railway
+      POSTGRES_PASSWORD: railway
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  web:
+    build: .
+    container_name: django_app
+    restart: always
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgres://railway:railway@db:5432/railway
+    ports:
+      - "8000:8000"
+
+volumes:
+  postgres_data:

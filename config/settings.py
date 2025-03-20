@@ -13,6 +13,8 @@ import os
 from pathlib import Path
 import dj_database_url
 import environ
+from dotenv import load_dotenv
+load_dotenv()
 
 
 
@@ -32,31 +34,34 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 SECRET_KEY = env("SECRET_KEY")
-ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
+# ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "0.0.0.0", ".up.railway.app", "::1"]
 DEBUG = env("DEBUG")
-
 DATABASES = {
-    "default": dj_database_url.config(
-        conn_max_age=600,
-        conn_health_checks=True,
-    ),
+    'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
 }
 # DATABASES = {
+#     "default": dj_database_url.config(
+#         conn_max_age=600,
+#         conn_health_checks=True,
+#     ),
+# }
+# DATABASES = {
 #     "default": {
-#         "ENGINE": "django.db.backends.postgresql_psycopg2",
-#         "NAME": env("PGNAME"),
-#         "HOST": env("PGHOST"),
-#         "PORT": env("PGPORT"),
-#         "USER": env("PGUSER"),
-#         "PASSWORD": env("PGPASSWORD"),
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": "railway",
+#         "USER": "postgres",
+#         "PASSWORD": "zlfuDIWUnAVGyhsmbMRqHUoQgQNOKhmw",
+#         "HOST": "postgres.railway.internal",
+#         "PORT": 5432,
 #     }
 # }
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
-    }
-}
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+#     }
+# }
 
 # Настройки для отправки email
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
