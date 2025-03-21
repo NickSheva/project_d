@@ -28,5 +28,3 @@ dependencies = [
     "psycopg>=3.2.6",
     "pillow>=11.1.0",
 ]
-[tool.setuptools.packages.find]
-include = ["config", "static", "test_app", "templates", "user_profile", "employee_learning"]

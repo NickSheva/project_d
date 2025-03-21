@@ -1,0 +1,11 @@
+# Исключить ненужные файлы и директории
+.git/
+.env
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+node_modules/
+venv/
