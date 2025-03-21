@@ -1,0 +1,9 @@
+services:
+  web:
+    build: .
+    container_name: django_app_prod
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: postgresql://postgres:zlfuDIWUnAVGyhsmbMRqHUoQgQNOKhmw@postgres.railway.internal:5432/railway

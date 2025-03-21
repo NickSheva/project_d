@@ -34,24 +34,37 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 SECRET_KEY = env("SECRET_KEY")
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
 DEBUG = env("DEBUG")
+DATABASE_URL = os.getenv("DATABASE_URL")
 
+if DATABASE_URL:
+    DATABASES = {"default": dj_database_url.parse(DATABASE_URL)}
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    }
+# DATABASES = {
+#     "default": env.db()
+# }
 # DATABASES = {
 #     "default": dj_database_url.config(
-#         default="postgres://nikolayshevtsov:admin@localhost:5432/mydatabase",
+#         default="DATABASE_URL",
 #         conn_max_age=600,
 #         conn_health_checks=True,
 #     ),
 # }
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": env("PGNAME"),
-        "HOST": env("PGHOST"),
-        "PORT": env("PGPORT"),
-        "USER": env("PGUSER"),
-        "PASSWORD": env("PGPASSWORD"),
-    }
-}
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql_psycopg2",
+#         "NAME": env("PGNAME"),
+#         "HOST": env("PGHOST"),
+#         "PORT": env("PGPORT"),
+#         "USER": env("PGUSER"),
+#         "PASSWORD": env("PGPASSWORD"),
+#     }
+# }
 # DATABASES = {
 #     "default": {
 #         "ENGINE": "django.db.backends.sqlite3",
