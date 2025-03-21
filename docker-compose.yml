@@ -7,9 +7,9 @@ services:
       POSTGRES_PASSWORD: admin
       POSTGRES_DB: mydjangodb
     ports:
-      - "5432:5432"
-    volumes:
-      - ./postgres_data:/var/lib/postgresql/data
+      - "5001:5432"
+    #volumes:
+      #- ./postgres_data:/var/lib/postgresql/data
       #- /opt/homebrew/var/postgres:/var/lib/postgresql/data  # Bind mount
 
   web:
@@ -17,11 +17,12 @@ services:
     container_name: django_app
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
-      - .:/app
+      - .:/django_app
     ports:
       - "8000:8000"
+    env_file:
+      - .env  # Загружаем переменные из .env
     depends_on:
       - db
     environment:
       DATABASE_URL: postgresql://nikolayshevtsov:admin@db:5432/mydjangodb
-

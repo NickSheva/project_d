@@ -24,7 +24,7 @@ env = environ.Env(
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Take environment variables from .env file
-environ.Env.read_env(".env")  # <-- Updated!
+environ.Env.read_env(BASE_DIR / ".env")  # <-- Updated!
 
 TEMPLATE_DIR = BASE_DIR / "templates"
 
