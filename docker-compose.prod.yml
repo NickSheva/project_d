@@ -6,7 +6,7 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - DEBUG=True
+      - DEBUG=False
       - DATABASE_URL=postgresql://postgres:zlfuDIWUnAVGyhsmbMRqHUoQgQNOKhmw@postgres.railway.internal:5432/railway
     depends_on:
       - db
