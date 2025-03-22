@@ -47,8 +47,14 @@ else:
     }
 CSRF_TRUSTED_ORIGINS = [
     "https://projectd-production.up.railway.app",
-    "http://localhost:8000",
+    "http://127.0.0.1",
+    "http://localhost",
 ]
+
+# CSRF_COOKIE_HTTPONLY = False
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 # DATABASES = {
 #     "default": env.db()
 # }
