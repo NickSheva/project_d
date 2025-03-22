@@ -45,6 +45,10 @@ else:
             "NAME": BASE_DIR / "db.sqlite3",
         }
     }
+CSRF_TRUSTED_ORIGINS = [
+    "https://projectd-production.up.railway.app",
+    "http://localhost:8000",
+]
 # DATABASES = {
 #     "default": env.db()
 # }
