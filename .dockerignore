@@ -9,3 +9,6 @@ __pycache__/
 *.sqlite3
 node_modules/
 venv/
+staticfiles/
+media/
+logs/
