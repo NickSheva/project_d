@@ -55,16 +55,7 @@ else:
 #         conn_health_checks=True,
 #     ),
 # }
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.postgresql_psycopg2",
-#         "NAME": env("PGNAME"),
-#         "HOST": env("PGHOST"),
-#         "PORT": env("PGPORT"),
-#         "USER": env("PGUSER"),
-#         "PASSWORD": env("PGPASSWORD"),
-#     }
-# }
+
 # DATABASES = {
 #     "default": {
 #         "ENGINE": "django.db.backends.sqlite3",
