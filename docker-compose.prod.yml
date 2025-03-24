@@ -9,7 +9,7 @@ services:
       - .env
     environment:
       DEBUG: "False"
-      DATABASE_URL: postgresql://postgres:zlfuDIWUnAVGyhsmbMRqHUoQgQNOKhmw@postgres.railway.internal:5432/railway
+      DATABASE_URL: postgresql://postgres:zlfuDIWUnAVGyhsmbMRqHUoQgQNOKhmw@postgres.railway.internal:5430/railway
 
 #   db:
 #     image: postgres:13

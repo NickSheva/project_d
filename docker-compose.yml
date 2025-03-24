@@ -24,4 +24,4 @@ services:
     depends_on:
       - db
     environment:
-      DATABASE_URL: postgresql://nikolayshevtsov:admin@db:5432/mydjangodb
+      DATABASE_URL: postgresql://nikolayshevtsov:admin@db:5430/mydjangodb
